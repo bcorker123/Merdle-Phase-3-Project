@@ -1,6 +1,6 @@
-import React from 'react'
-import { Nav, Navbar } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Nav, Navbar } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function NavHeader() {
   return (
@@ -26,6 +26,6 @@ function NavHeader() {
         </Nav>
       </Navbar>
     </div>
-  )
+  );
 }
-export default NavHeader
+export default NavHeader;

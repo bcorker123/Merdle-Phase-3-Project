@@ -1,18 +1,17 @@
-import React from 'react'
-import './App.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
-// import { Outlet } from 'react-router-dom'
-import NavHeader from './NavHeader'
-import MemeCard from './MemeCard'
+import React from "react";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Outlet } from "react-router-dom";
+// import MemeCard from "./MemeCard";
+import NavHeader from "./NavHeader";
 
 function App() {
   return (
     <div className="App">
       <NavHeader />
-      <MemeCard />
-      {/* <Outlet /> */}
+      <Outlet />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
