@@ -14,7 +14,9 @@ class ApplicationController < Sinatra::Base
 
   get '/merdles/:id' do
     id = params[:id].to_i - 1
-    Merdle.all[id].to_json
+    merdle = Merdle.all[id]
+    merdle_hash = { id: params[:id].to_i, name: merdle.name, scores: merdle.scores}
+    merdle_hash.to_json
   end
 
   get '/users' do
@@ -24,8 +26,8 @@ class ApplicationController < Sinatra::Base
   get '/users/:id' do
     id = params[:id].to_i - 1
     user = User.all[id]
-    #binding.pry
-    User.all[id].to_json
+    user_hash = { id: params[:id].to_i, name: user.name, scores: user.scores }
+    user_hash.to_json
   end
 
   get '/scores' do
