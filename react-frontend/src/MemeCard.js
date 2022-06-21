@@ -7,7 +7,7 @@ function MemeCard() {
       className="container square-box d-flex justify-content-center align-items-center"
       id="navigation-text"
     >
-      <Card style={{ top: "125px", width: "600px", height: "500px" }}>
+      <Card style={{ top: "40px", width: "600px", height: "500px" }}>
         <Card.Img variant="center" src="holder.js/100px180" />
         <Card.Body>
           <Card.Title>Card Title</Card.Title>
