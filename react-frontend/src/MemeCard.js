@@ -1,11 +1,14 @@
-import React from 'react'
-import { Card, Button } from 'react-bootstrap'
+import React from "react";
+import { Card, Button } from "react-bootstrap";
 
 function MemeCard() {
   return (
-    <div id="navigation-text">
-      <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src="holder.js/100px180" />
+    <div
+      className="container square-box d-flex justify-content-center align-items-center"
+      id="navigation-text"
+    >
+      <Card style={{ top: "125px", width: "600px", height: "500px" }}>
+        <Card.Img variant="center" src="holder.js/100px180" />
         <Card.Body>
           <Card.Title>Card Title</Card.Title>
           <Card.Text>
@@ -16,7 +19,7 @@ function MemeCard() {
         </Card.Body>
       </Card>
     </div>
-  )
+  );
 }
 
-export default MemeCard
+export default MemeCard;

@@ -19,3 +19,8 @@ code {
   font-size: 16pt;
 }
 
+.square-box{
+  max-width: 600px;
+  min-height: 600px;
+ 
+}
