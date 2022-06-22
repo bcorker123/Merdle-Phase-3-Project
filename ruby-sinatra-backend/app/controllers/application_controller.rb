@@ -23,6 +23,10 @@ class ApplicationController < Sinatra::Base
     merdle_hash.to_json
   end
 
+  get '/merdles/random' do
+    'random'
+  end
+
   get '/users' do
     User.all.to_json
   end
@@ -45,6 +49,17 @@ class ApplicationController < Sinatra::Base
   get '/scores/:id' do
     id = params[:id].to_i - 1
     Score.all[id].to_json
+  end
+
+  post '/users' do
+    user = User.create(name:params[:name])
+    user.to_json
+  end
+
+  patch '/users/:id' do
+    user = User.find(params[:id])
+    user.update(name:params[:name])
+    user.to_json
   end
 
 end

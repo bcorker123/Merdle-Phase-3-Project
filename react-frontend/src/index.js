@@ -3,22 +3,20 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import MemeCard from "./MemeCard";
-import Home from "./Home";
-import ScoreCard from "./ScoreCard";
-import GridBoard from "./GridBoard";
+import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
   <BrowserRouter>
-    <Routes>
+    <App />
+    {/* <Routes>
       <Route path="/" element={<App />}>
         <Route index element={<Home />} />
         <Route path="/play" element={<GridBoard />} />
         <Route path="/scores" element={<ScoreCard />} />
       </Route>
-    </Routes>
+    </Routes> */}
   </BrowserRouter>
 );
 
