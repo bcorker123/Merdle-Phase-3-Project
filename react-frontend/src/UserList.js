@@ -1,17 +1,28 @@
 import React from "react";
 import CreateUserForm from "./CreateUserForm";
-import { Button } from "react-bootstrap";
+import { Spinner } from "react-bootstrap";
+import UserListItem from "./UserListItem";
 
-function UserList({ users, handleSelectUser, handleAddUser }) {
+function UserList({ users, handleSelectUser, handleAddUser, handleEditUser }) {
   if (!users) {
-    return <h1>Loading users...</h1>;
+    return (
+      <>
+        <Spinner animation="grow" role="status" variant="info"></Spinner>
+        <br />
+        <Spinner animation="grow" role="status" variant="info"></Spinner>
+        <br />
+        <Spinner animation="grow" role="status" variant="info"></Spinner>
+      </>
+    );
   }
 
   const usersList = users.map((user) => {
     return (
-      <div>
-        <Button onClick={() => handleSelectUser(user.name)}>{user.name}</Button>
-      </div>
+      <UserListItem
+        handleEditUser={handleEditUser}
+        handleSelectUser={handleSelectUser}
+        user={user}
+      />
     );
   });
 

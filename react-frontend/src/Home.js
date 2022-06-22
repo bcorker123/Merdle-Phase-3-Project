@@ -22,6 +22,26 @@ function Home({ handleSelectUser }) {
       .then((newUserResponse) => setUsers([...users, newUserResponse]));
   }
 
+  function handleEditUser(e, newUser, selectedUser) {
+    e.preventDefault();
+    fetch(`http://localhost:9292/users/${selectedUser.id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newUser),
+    })
+      .then((r) => r.json())
+      .then((newUserResponse) => {
+        const newUsersArray = users.map((user) => {
+          if (user.id === selectedUser.id) {
+            return (user.name = selectedUser.name);
+          } else {
+            return user;
+          }
+        });
+        setUsers(newUsersArray);
+      });
+  }
+
   return (
     <div id="home-div" className="font">
       <h1 id="home-header">
@@ -53,6 +73,7 @@ function Home({ handleSelectUser }) {
       </h2>
       <UserList
         handleAddUser={handleAddUser}
+        handleEditUser={handleEditUser}
         users={users}
         handleSelectUser={handleSelectUser}
       />
