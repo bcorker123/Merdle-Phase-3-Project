@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
 import GridSquare from './GridSquare'
-import MemeCard from './MemeCard'
 
 function GridBoard() {
   const [memes, setMemes] = useState([])
@@ -43,6 +42,8 @@ function GridBoard() {
     rows.push(columns)
   }
 
+  const image_url = "https://i.imgflip.com/1ur9b0.jpg";
+
   return (
     <>
       <div>
@@ -60,7 +61,6 @@ function GridBoard() {
             {rows.map((row) => (
               <div>{row}</div>
             ))}
-            <MemeCard />
           </div>
         </div>
       </div>

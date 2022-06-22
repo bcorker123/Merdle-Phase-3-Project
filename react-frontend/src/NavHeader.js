@@ -1,8 +1,8 @@
-import React from 'react'
-import { Nav, Navbar } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Nav, Navbar, Badge } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-function NavHeader() {
+function NavHeader({ currentUser }) {
   return (
     <div className="navigation">
       <Navbar bg="bbcolors" variant="dark" fixed="top" className="navbar py-4">
@@ -19,8 +19,11 @@ function NavHeader() {
             Scores
           </Link>
         </Nav>
+        <Badge pill bg="info">
+          Current User: {currentUser ? currentUser : "none"}
+        </Badge>
       </Navbar>
     </div>
-  )
+  );
 }
-export default NavHeader
+export default NavHeader;
