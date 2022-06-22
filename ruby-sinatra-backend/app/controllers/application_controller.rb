@@ -12,19 +12,26 @@ class ApplicationController < Sinatra::Base
     Merdle.all.to_json
   end 
 
-  get '/merdles/:id' do
-    id = params[:id].to_i - 1
-    merdle = Merdle.all[id]
+  # get '/merdles/:id' do
+  #   id = params[:id].to_i - 1
+  #   merdle = Merdle.all[id]
+  #   merdle_hash = { 
+  #     id: params[:id].to_i, 
+  #     name: merdle.name, 
+  #     scores: merdle.scores_with_names
+  #   }
+  #   merdle_hash.to_json
+  # end
+
+  get '/merdles/random' do
+    merdle = Merdle.all.sample
     merdle_hash = { 
-      id: params[:id].to_i, 
+      id: merdle.id,
       name: merdle.name, 
+      image_url: merdle.image_url,
       scores: merdle.scores_with_names
     }
     merdle_hash.to_json
-  end
-
-  get '/merdles/random' do
-    'random'
   end
 
   get '/users' do

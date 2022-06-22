@@ -1,45 +1,45 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 
-import GridSquare from './GridSquare'
+import GridSquare from "./GridSquare";
 
 function GridBoard() {
-  const [memes, setMemes] = useState([])
-  const [isClicked, setIsClicked] = useState(false)
-  const [memeDisplay, setMemeDisplay] = useState('')
-  const [answer, setAnswer] = useState('')
+  const [memes, setMemes] = useState([]);
+  const [isClicked, setIsClicked] = useState(false);
+  const [memeDisplay, setMemeDisplay] = useState("");
+  const [answer, setAnswer] = useState("");
 
-  const [postion, setPosition] = useState(0)
+  const [postion, setPosition] = useState(0);
 
   useEffect(() => {
-    fetch('https://api.imgflip.com/get_memes')
+    fetch("https://api.imgflip.com/get_memes")
       .then((r) => r.json())
-      .then((data) => setMemes(data.data.memes))
-  }, [])
+      .then((data) => setMemes(data.data.memes));
+  }, []);
 
-  const memeName = memes.map((meme) => meme.name)
-  const memePic = memes.map((meme) => meme.url)
+  const memeName = memes.map((meme) => meme.name);
+  const memePic = memes.map((meme) => meme.url);
 
   function getMeme() {
-    setIsClicked(true)
-    setMemeDisplay(memePic[0])
+    setIsClicked(true);
+    setMemeDisplay(memePic[0]);
   }
 
   function handleAnswer(e) {
-    setAnswer(e.targert)
+    setAnswer(e.targert);
   }
 
-  console.log(memeDisplay)
+  console.log(memeDisplay);
 
-  const rows = []
+  const rows = [];
 
   for (let row = 0; row < 4; row++) {
-    const columns = []
+    const columns = [];
 
     for (let col = 0; col < 4; col++) {
-      columns.push(<GridSquare key={`${col}${row}`} />)
+      columns.push(<GridSquare key={`${col}${row}`} />);
     }
 
-    rows.push(columns)
+    rows.push(columns);
   }
 
   const image_url = "https://i.imgflip.com/1ur9b0.jpg";
@@ -52,9 +52,9 @@ function GridBoard() {
           className="container justify-content-center align-items-center"
           style={{
             backgroundImage: `url(${memeDisplay})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'top',
-            backgroundClip: 'content-box',
+            backgroundSize: "cover",
+            backgroundPosition: "top",
+            backgroundClip: "content-box",
           }}
         >
           <div className="grid-board">
@@ -75,10 +75,10 @@ function GridBoard() {
         value={answer}
       ></textarea>
     </>
-  )
+  );
 }
 
-export default GridBoard
+export default GridBoard;
 
 // {isClicked ? }
 
