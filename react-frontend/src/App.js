@@ -25,7 +25,7 @@ function App() {
         <Route path="/scores" element={<ScoreCard />} />
       </Routes>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -47,7 +47,7 @@ code {
 }
 
 .grid-square {
-  background-color: black;
+  
   border-style: solid;
   width: var(--tile-size);
   height: var(--tile-size);
@@ -56,6 +56,10 @@ code {
   border-top-color: var(--border-top-color);
   border-right-color: var(--border-right-color);
   border-bottom-color: var(--border-bottom-color);
+}
+
+#covered{
+  background-color: black;
 }
 
 :root {
@@ -119,3 +123,35 @@ code {
   /* top:100px;
   left:700px;
 } */
+
+.button-slide {
+  color: #FFF;
+  border: 4px solid #2978A0;
+  border-radius: 0px;
+  padding: 18px 36px;
+  display: inline-block;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 16px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 0 #8BD7D2;
+  -webkit-transition: ease-out 0.4s;
+  -moz-transition: ease-out 0.4s;
+  transition: ease-out 0.4s;
+}
+
+.slide-left:hover {
+  box-shadow: inset 0 0 0 50px #8BD7D2;
+}
+
+#outer {
+  width: 364px;
+  left: 100px;
+  margin: 50px auto 0 auto;
+  text-align: center;
+}
+
+.answer-box{
+  margin-top: 10px;
+  border: 4px solid #1313c1;
+}
