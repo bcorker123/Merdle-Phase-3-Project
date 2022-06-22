@@ -19,6 +19,26 @@ code {
   font-size: 16pt;
 }
 
+#home-header{
+  font-size:60px;
+}
+
+#home-subheader{
+  font-size:30px;
+}
+
+#home-div{
+  margin:auto;
+}
+
+#home-accordion{
+  width:300px;
+}
+
+.font{
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
 .square-box{
   max-width: 600px;
   min-height: 600px;

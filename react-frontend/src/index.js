@@ -10,6 +10,7 @@ import ScoreCard from "./ScoreCard";
 import GridBoard from "./GridBoard";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
   <BrowserRouter>
     <Routes>

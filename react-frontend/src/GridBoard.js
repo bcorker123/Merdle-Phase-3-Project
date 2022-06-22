@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import GridSquare from "./GridSquare";
 import MemeCard from "./MemeCard";
 
 function GridBoard() {
+  // set this to /merdles/random fetch to populate image and name
+  // const [meme, setMeme] = useState(null);
+
+  // useEffect(() => {
+  //   fetch("http://localhost:9292/merdles")
+  //     .then((r) => r.json())
+  //     .then((data) => setMeme(data));
+  // }, []);
+
   const rows = [];
 
   for (let row = 0; row < 4; row++) {

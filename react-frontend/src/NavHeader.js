@@ -1,6 +1,6 @@
-import React from 'react'
-import { Nav, Navbar } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Nav, Navbar, Badge } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function NavHeader() {
   return (
@@ -19,8 +19,11 @@ function NavHeader() {
             Scores
           </Link>
         </Nav>
+        <Badge pill bg="info">
+          Current User: (currentUser state value)
+        </Badge>
       </Navbar>
     </div>
-  )
+  );
 }
-export default NavHeader
+export default NavHeader;
