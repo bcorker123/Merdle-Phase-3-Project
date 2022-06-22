@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Badge, Accordion, Container, Card } from "react-bootstrap";
+import { Badge, Accordion, Container } from "react-bootstrap";
 import UserList from "./UserList";
 
-function Home() {
+function Home({ handleSelectUser }) {
   const [users, setUsers] = useState(null);
 
   useEffect(() => {
@@ -10,6 +10,17 @@ function Home() {
       .then((r) => r.json())
       .then((data) => setUsers(data));
   }, []);
+
+  function handleAddUser(e, newUser) {
+    e.preventDefault();
+    fetch("http://localhost:9292/users", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newUser),
+    })
+      .then((r) => r.json())
+      .then((newUserResponse) => setUsers([...users, newUserResponse]));
+  }
 
   return (
     <div id="home-div" className="font">
@@ -40,7 +51,11 @@ function Home() {
           Before you play, select/create a user below:
         </Badge>
       </h2>
-      <UserList users={users} />
+      <UserList
+        handleAddUser={handleAddUser}
+        users={users}
+        handleSelectUser={handleSelectUser}
+      />
     </div>
   );
 }

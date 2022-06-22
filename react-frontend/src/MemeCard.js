@@ -1,6 +1,6 @@
 import React from "react";
-import { Card, Button } from "react-bootstrap";
-import ReactCrop from "react-image-crop";
+// import { Card, Button } from "react-bootstrap";
+// import ReactCrop from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
 
 function MemeCard() {

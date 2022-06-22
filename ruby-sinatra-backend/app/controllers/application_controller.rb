@@ -47,4 +47,9 @@ class ApplicationController < Sinatra::Base
     Score.all[id].to_json
   end
 
+  post '/users' do
+    user = User.create(name:params[:name])
+    user.to_json
+  end
+
 end

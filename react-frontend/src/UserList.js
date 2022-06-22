@@ -2,7 +2,7 @@ import React from "react";
 import CreateUserForm from "./CreateUserForm";
 import { Button } from "react-bootstrap";
 
-function UserList({ users }) {
+function UserList({ users, handleSelectUser, handleAddUser }) {
   if (!users) {
     return <h1>Loading users...</h1>;
   }
@@ -10,15 +10,15 @@ function UserList({ users }) {
   const usersList = users.map((user) => {
     return (
       <div>
-        <Button>{user.name}</Button>
+        <Button onClick={() => handleSelectUser(user.name)}>{user.name}</Button>
       </div>
     );
   });
 
   return (
-    <div>
+    <div id="users-div" style={{ width: "200px", margin: "auto" }}>
       {usersList}
-      <CreateUserForm />
+      <CreateUserForm handleAddUser={handleAddUser} />
     </div>
   );
 }
