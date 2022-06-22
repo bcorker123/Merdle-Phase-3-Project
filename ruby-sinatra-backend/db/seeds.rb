@@ -23,5 +23,7 @@ User.create(name: 'abram')
 puts "🌱 Creating Scores..."
 Score.create(points: 100, user_id: 1, merdle_id: 1)
 Score.create(points: 200, user_id: 2, merdle_id: 2)
+Score.create(points: 300, user_id: 1, merdle_id: 1)
+Score.create(points: 400, user_id: 2, merdle_id: 2)
 
 puts "✅ Done seeding!"
