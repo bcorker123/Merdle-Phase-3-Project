@@ -1,5 +1,7 @@
-import React from "react";
-import { Card, Button } from "react-bootstrap";
+import React from 'react'
+import { Card, Button } from 'react-bootstrap'
+import ReactCrop from 'react-image-crop'
+import 'react-image-crop/dist/ReactCrop.css'
 
 function MemeCard() {
   return (
@@ -7,19 +9,25 @@ function MemeCard() {
       className="container square-box d-flex justify-content-center align-items-center"
       id="navigation-text"
     >
-      <Card style={{ top: "40px", width: "600px", height: "500px" }}>
-        <Card.Img variant="center" src="holder.js/100px180" />
+      <Card style={{ top: '40px', width: '600px', height: '550px' }}>
+        <Card.Img
+          style={{
+            alignSelf: 'center',
+
+            maxWidth: 575,
+            maxHeight: 525,
+            minWidth: 575,
+            minHeight: 525,
+          }}
+          variant="center"
+          src="https://i.imgflip.com/1ur9b0.jpg"
+        />
         <Card.Body>
-          <Card.Title>Card Title</Card.Title>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </Card.Text>
-          <Button variant="primary">Go somewhere</Button>
+          {/* <Button variant="primary">Go somewhere</Button> */}
         </Card.Body>
       </Card>
     </div>
-  );
+  )
 }
 
-export default MemeCard;
+export default MemeCard

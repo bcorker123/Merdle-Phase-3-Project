@@ -24,3 +24,62 @@ code {
   min-height: 600px;
  
 }
+
+.grid-square {
+  
+  border-style: solid;
+  width: var(--tile-size);
+  height: var(--tile-size);
+  border-width: var(--border-width);
+  border-left-color: var(--border-left-color);
+  border-top-color: var(--border-top-color);
+  border-right-color: var(--border-right-color);
+  border-bottom-color: var(--border-bottom-color);
+}
+
+:root {
+  
+
+ 
+  --border-left-color: #958b4a;
+  --border-top-color: #cbc076;
+  --border-right-color:  #AFC97E;
+  --border-bottom-color: #7b8e57;
+
+  /* Square Colors:  background colors for the squares.
+  --color-0: #eaeaea;
+  --color-1: #ff6600;
+  --color-2: #eec900;
+  --color-3: #0000ff;
+  --color-4: #cc00ff;
+  --color-5: #00ff00;
+  --color-6: #66ccff;
+  --color-7: #ff0000; */
+
+ 
+
+  /* Numbers define values that will be used throughout the CSS.
+  --tile-size: 20px for example will set size of the grid squares. */
+  --cols: 10;
+  --rows: 18;
+  --tile-size: 100px;
+  --border-width: 5px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.grid-board {
+  
+  display: grid;
+  grid-template-columns: repeat(var(--cols), var(--tile-size));
+  grid-gap: 0;
+  align-self: flex-start;
+  
+}
+
+
+/* #board-pos{
+left: 200px;
+} */
