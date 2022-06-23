@@ -4,6 +4,14 @@ class Merdle < ActiveRecord::Base
     has_many :scores
     has_many :users, through: :scores
 
+    def self.get_images
+        image = self.all.map do |merdle|
+            merdle.image_url
+        end
+        image
+    end
+    
+
     def scores_with_names
         scores_array = []
         i = 0
