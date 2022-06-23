@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Button } from 'react-bootstrap'
-
-import GridSquare from './GridSquare'
+import GridSquare from "./GridSquare";
 
 function GridBoard() {
   const [memes, setMemes] = useState([])
@@ -45,16 +44,16 @@ function GridBoard() {
     console.log(answer)
   }
 
-  const rows = []
+  const rows = [];
 
   for (let row = 0; row < 4; row++) {
-    const columns = []
+    const columns = [];
 
     for (let col = 0; col < 4; col++) {
       columns.push(<GridSquare key={`${col}${row}`} revealed={revealed} />)
     }
 
-    rows.push(columns)
+    rows.push(columns);
   }
 
   return (
@@ -93,7 +92,22 @@ function GridBoard() {
         </Button>
       </form>
     </>
-  )
+  );
 }
 
-export default GridBoard
+export default GridBoard;
+
+// {isClicked ? }
+
+// `url${memeDisplay}`
+
+// {isClicked ? <img src={memeDisplay} alt="ERROR" /> : ''}
+
+// style={{ backgroundImage: isClicked ? memeDisplay : '' }}
+
+// style={{
+//   backgroundImage: `url${oneMeme}`,
+//   backgroundSize: 'cover',
+//   backgroundPosition: 'top',
+//   backgroundClip: 'content-box',
+// }}
