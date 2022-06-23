@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 
-function GridSquare() {
+function GridSquare({ revealed }) {
   const [covered, setCovered] = useState(true)
-  //   console.log(covered)
 
   function handleClick() {
     setCovered(!covered)
@@ -18,9 +17,3 @@ function GridSquare() {
 }
 
 export default GridSquare
-
-// id={covered ? 'covered' : ''}
-
-// className={"grid-square" `${covered ? 'covered' : ''}`}
-
-// className="grid-square" id={covered ? 'covered' : ''}
