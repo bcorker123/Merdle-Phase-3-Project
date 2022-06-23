@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Button } from 'react-bootstrap'
-import GridSquare from "./GridSquare";
+import GridSquare from './GridSquare'
 
 function GridBoard() {
   const [memes, setMemes] = useState([])
@@ -10,19 +10,11 @@ function GridBoard() {
   const [answer, setAnswer] = useState('')
   const [userInput, setUserInput] = useState('')
 
-  const [position, setPosition] = useState(0)
-
   useEffect(() => {
-    fetch('http://localhost:9292/merdles')
+    fetch('http://localhost:9292/merdles/random')
       .then((r) => r.json())
       .then((data) => setMemes(data))
   }, [])
-
-  const memeName = memes.map((meme) => meme.name)
-  const memePic = memes.map((meme) => meme.image_url)
-
-  const oneMemeName = memeName.slice(position, position + 1)
-  const oneMemePic = memePic.slice(position, position + 1)
 
   function showAll() {
     setRevealed(true)
@@ -30,9 +22,9 @@ function GridBoard() {
 
   function getMeme() {
     setIsClicked(true)
-    setPosition(position + 1)
-    setMemeDisplay(oneMemePic)
-    setAnswer(oneMemeName)
+
+    setMemeDisplay(memes.image_url)
+    setAnswer(memes.name)
   }
 
   function handleAnswer(e) {
@@ -44,16 +36,16 @@ function GridBoard() {
     console.log(answer)
   }
 
-  const rows = [];
+  const rows = []
 
   for (let row = 0; row < 4; row++) {
-    const columns = [];
+    const columns = []
 
     for (let col = 0; col < 4; col++) {
       columns.push(<GridSquare key={`${col}${row}`} revealed={revealed} />)
     }
 
-    rows.push(columns);
+    rows.push(columns)
   }
 
   return (
@@ -92,10 +84,10 @@ function GridBoard() {
         </Button>
       </form>
     </>
-  );
+  )
 }
 
-export default GridBoard;
+export default GridBoard
 
 // {isClicked ? }
 
