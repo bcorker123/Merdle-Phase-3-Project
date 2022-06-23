@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Button, Card } from "react-bootstrap";
-import Spinner from 'react-bootstrap/Spinner'
+import { Button, Card, ListGroup } from "react-bootstrap";
+import Spinner from "react-bootstrap/Spinner";
 import GridSquare from "./GridSquare";
 
 function GridBoard({ currentUser }) {
@@ -9,7 +9,8 @@ function GridBoard({ currentUser }) {
   const [userInput, setUserInput] = useState("");
   const [points, setPoints] = useState(1600);
   const [scoresList, setScoresList] = useState([]);
-  const [correctGuess, setCorrectGuess] = useState(false)
+  const [correctGuess, setCorrectGuess] = useState(false);
+  const [answerTries, setAnswerTries] = useState(0);
 
   useEffect(() => {
     fetch("http://localhost:9292/merdles/random")
@@ -35,6 +36,8 @@ function GridBoard({ currentUser }) {
     setPoints(1600);
     pointsBG = "info";
     setRevealed(false);
+    setCorrectGuess(false);
+    setAnswerTries(0);
   }
 
   function handleAnswer(e) {
@@ -43,17 +46,26 @@ function GridBoard({ currentUser }) {
   }
 
   function handleSubmit(e) {
-    e.preventDefault()
-    console.log(correctGuess)
-    console.log(memes.name)
-    console.log(userInput)
+    e.preventDefault();
+    const newAnswerTries = answerTries + 1;
+    setAnswerTries(newAnswerTries);
+    // console.log(correctGuess);
+    // console.log(memes.name);
+    // console.log(userInput);
     if (
       memes.name.toLowerCase().includes(userInput.toLowerCase()) &&
-      userInput !== ''
+      userInput !== ""
     ) {
-      return setCorrectGuess(true)
+      const newScore = {
+        points: points,
+        user_id: currentUser.id,
+        merdle_id: memes.id,
+      };
+      console.log("new score object:", newScore);
+      // post request for new score
+      return setCorrectGuess(true);
     } else {
-      return setCorrectGuess(false)
+      return setCorrectGuess(false);
     }
   }
 
@@ -119,18 +131,24 @@ function GridBoard({ currentUser }) {
               <Card.Body>
                 <Card.Title>{points}</Card.Title>
               </Card.Body>
-              <Card.Footer>
-                User: {currentUser ? currentUser : "anon"}
-              </Card.Footer>
+              <Card.Footer>User: {currentUser.name}</Card.Footer>
+            </Card>
+            <Card border="warning">
+              <Card.Header>When you need a new meme:</Card.Header>
+              <Card>
+                <ListGroup variant="flush">
+                  <ListGroup.Item>1. Click REVEAL</ListGroup.Item>
+                  <ListGroup.Item>2. Click New Meme</ListGroup.Item>
+                  <ListGroup.Item>3. Play!!</ListGroup.Item>
+                </ListGroup>
+              </Card>
             </Card>
           </div>
         </div>
       </div>
-      <div style={{ backgroundColor: "white" }}>First click Reveal:</div>
       <button className="reveal" onClick={showAll}>
         REVEAL
       </button>
-      <div style={{ backgroundColor: "white" }}>Then click New Meme:</div>
       <div id="outer">
         <div className="button-slide slide-left" onClick={getMeme}>
           New Meme
@@ -148,7 +166,7 @@ function GridBoard({ currentUser }) {
           YOU WIN
         </Button>
       ) : (
-        ''
+        ""
       )}
 
       <form onSubmit={handleSubmit} className="answer-box">
@@ -156,6 +174,7 @@ function GridBoard({ currentUser }) {
         <Button className="button2" type="submit">
           Answer
         </Button>
+        <Card body>Tries: x{answerTries}</Card>
       </form>
       {displayScores}
     </>

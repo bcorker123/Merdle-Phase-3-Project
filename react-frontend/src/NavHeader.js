@@ -20,7 +20,7 @@ function NavHeader({ currentUser }) {
           </Link>
         </Nav>
         <Badge pill bg="info">
-          Current User: {currentUser ? currentUser : "none"}
+          Current User: {currentUser.name}
         </Badge>
       </Navbar>
     </div>

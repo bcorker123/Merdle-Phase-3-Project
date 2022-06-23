@@ -17,6 +17,7 @@ meme_hash.each do |meme|
 end
 
 puts "🌱 Creating Users..."
+User.create(name:'anon')
 User.create(name: 'brian')
 User.create(name: 'abram')
 User.create(name: 'dj')

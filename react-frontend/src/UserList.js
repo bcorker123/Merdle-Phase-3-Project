@@ -22,15 +22,21 @@ function UserList({
     );
   }
 
+  console.log(users);
+
   const usersList = users.map((user) => {
-    return (
-      <UserListItem
-        handleEditUser={handleEditUser}
-        handleSelectUser={handleSelectUser}
-        user={user}
-        handleDeleteUser={handleDeleteUser}
-      />
-    );
+    if (user.name !== "anon") {
+      return (
+        <UserListItem
+          handleEditUser={handleEditUser}
+          handleSelectUser={handleSelectUser}
+          user={user}
+          handleDeleteUser={handleDeleteUser}
+        />
+      );
+    } else {
+      return null;
+    }
   });
 
   return (

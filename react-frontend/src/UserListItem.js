@@ -16,7 +16,7 @@ function UserListItem({
 
   return (
     <div>
-      <Button onClick={() => handleSelectUser(user.name)}>{user.name}</Button>
+      <Button onClick={() => handleSelectUser(user)}>{user.name}</Button>
       {toggleEdit ? (
         <Button
           variant="outline-secondary"
