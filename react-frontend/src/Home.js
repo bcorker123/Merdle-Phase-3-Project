@@ -33,7 +33,7 @@ function Home({ handleSelectUser }) {
       .then((newUserResponse) => {
         const newUsersArray = users.map((user) => {
           if (user.id === selectedUser.id) {
-            return (user.name = selectedUser.name);
+            return newUser;
           } else {
             return user;
           }
