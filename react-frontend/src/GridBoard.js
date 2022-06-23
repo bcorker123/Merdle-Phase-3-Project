@@ -7,6 +7,7 @@ function GridBoard({ currentUser }) {
   const [revealed, setRevealed] = useState(false);
   const [userInput, setUserInput] = useState("");
   const [points, setPoints] = useState(1600);
+  const [scoresList, setScoresList] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:9292/merdles/random")
@@ -14,8 +15,12 @@ function GridBoard({ currentUser }) {
       .then((data) => {
         setMemes(data);
         setPoints(1600);
+        setScoresList(data.scores);
       });
   }, []);
+
+  console.log("scores: ", memes.scores);
+  console.log("meme id: ", memes.id);
 
   function showAll() {
     setRevealed(true);
@@ -26,6 +31,7 @@ function GridBoard({ currentUser }) {
       .then((r) => r.json())
       .then((data) => {
         setMemes(data);
+        setScoresList(data.scores);
       });
     setPoints(1600);
     pointsBG = "info";
@@ -74,7 +80,13 @@ function GridBoard({ currentUser }) {
     rows.push(columns);
   }
 
-  console.log("rows: ", rows);
+  const displayScores = scoresList.map((score) => {
+    return (
+      <div style={{ backgroundColor: "lightgreen" }}>
+        {score.name} got {score.points} on this Merdle!
+      </div>
+    );
+  });
 
   return (
     <>
@@ -122,6 +134,7 @@ function GridBoard({ currentUser }) {
           Answer
         </Button>
       </form>
+      {displayScores}
     </>
   );
 }
