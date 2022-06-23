@@ -1,34 +1,48 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useState, useEffect } from 'react'
+import { Button } from 'react-bootstrap'
 import GridSquare from "./GridSquare";
 
 function GridBoard() {
-  const [memes, setMemes] = useState([]);
-  const [isClicked, setIsClicked] = useState(false);
-  const [memeDisplay, setMemeDisplay] = useState("");
-  const [answer, setAnswer] = useState("");
+  const [memes, setMemes] = useState([])
+  const [isClicked, setIsClicked] = useState(false)
+  const [revealed, setRevealed] = useState(false)
+  const [memeDisplay, setMemeDisplay] = useState('')
+  const [answer, setAnswer] = useState('')
+  const [userInput, setUserInput] = useState('')
 
-  const [postion, setPosition] = useState(0);
+  const [position, setPosition] = useState(0)
 
   useEffect(() => {
-    fetch("https://api.imgflip.com/get_memes")
+    fetch('http://localhost:9292/merdles')
       .then((r) => r.json())
-      .then((data) => setMemes(data.data.memes));
-  }, []);
+      .then((data) => setMemes(data))
+  }, [])
 
-  const memeName = memes.map((meme) => meme.name);
-  const memePic = memes.map((meme) => meme.url);
+  const memeName = memes.map((meme) => meme.name)
+  const memePic = memes.map((meme) => meme.image_url)
+
+  const oneMemeName = memeName.slice(position, position + 1)
+  const oneMemePic = memePic.slice(position, position + 1)
+
+  function showAll() {
+    setRevealed(true)
+  }
 
   function getMeme() {
-    setIsClicked(true);
-    setMemeDisplay(memePic[0]);
+    setIsClicked(true)
+    setPosition(position + 1)
+    setMemeDisplay(oneMemePic)
+    setAnswer(oneMemeName)
   }
 
   function handleAnswer(e) {
-    setAnswer(e.targert);
+    setUserInput(e.target.value)
   }
 
-  console.log(memeDisplay);
+  function handleSubmit(e) {
+    e.preventDefault()
+    console.log(answer)
+  }
 
   const rows = [];
 
@@ -36,13 +50,11 @@ function GridBoard() {
     const columns = [];
 
     for (let col = 0; col < 4; col++) {
-      columns.push(<GridSquare key={`${col}${row}`} />);
+      columns.push(<GridSquare key={`${col}${row}`} revealed={revealed} />)
     }
 
     rows.push(columns);
   }
-
-  const image_url = "https://i.imgflip.com/1ur9b0.jpg";
 
   return (
     <>
@@ -51,10 +63,10 @@ function GridBoard() {
           id="board-pos"
           className="container justify-content-center align-items-center"
           style={{
-            backgroundImage: `url(${memeDisplay})`,
-            backgroundSize: "cover",
-            backgroundPosition: "top",
-            backgroundClip: "content-box",
+            backgroundImage: isClicked ? `url(${memeDisplay})` : '',
+            backgroundSize: 'cover',
+            backgroundPosition: 'top',
+            backgroundClip: 'content-box',
           }}
         >
           <div className="grid-board">
@@ -64,16 +76,21 @@ function GridBoard() {
           </div>
         </div>
       </div>
+      <button className="reveal" onClick={showAll}>
+        REVEAL
+      </button>
       <div id="outer">
         <div className="button-slide slide-left" onClick={getMeme}>
           New Meme
         </div>
       </div>
-      <textarea
-        className="answer-box"
-        onSubmit={handleAnswer}
-        value={answer}
-      ></textarea>
+
+      <form onSubmit={handleSubmit} className="answer-box">
+        <input type="text" onChange={handleAnswer} value={userInput} />
+        <Button className="button2" type="submit">
+          Answer
+        </Button>
+      </form>
     </>
   );
 }

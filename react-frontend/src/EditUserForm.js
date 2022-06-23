@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 
 function EditUserForm({ handleEditUser, user, submitToggle }) {
-  const [formData, setFormData] = useState({ name: "" });
+  const [formData, setFormData] = useState({ name: user.name });
 
   function handleInput({ target }) {
     setFormData({ ...formData, name: target.value });
@@ -13,7 +13,6 @@ function EditUserForm({ handleEditUser, user, submitToggle }) {
       style={{ backgroundColor: "lightblue" }}
       onSubmit={(e) => {
         handleEditUser(e, formData, user);
-        setFormData({ name: "" });
         submitToggle();
       }}
     >
