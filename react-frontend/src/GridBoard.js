@@ -1,30 +1,37 @@
 import React, { useState, useEffect } from 'react'
 import { Button } from 'react-bootstrap'
+import Spinner from 'react-bootstrap/Spinner'
 import GridSquare from './GridSquare'
 
 function GridBoard() {
   const [memes, setMemes] = useState([])
-  const [isClicked, setIsClicked] = useState(false)
+  // const [isClicked, setIsClicked] = useState(false)
   const [revealed, setRevealed] = useState(false)
   const [memeDisplay, setMemeDisplay] = useState('')
-  const [answer, setAnswer] = useState('')
+  const [correctAnswer, setCorrectAnswer] = useState('')
   const [userInput, setUserInput] = useState('')
+  const [correctGuess, setCorrectGuess] = useState(false)
 
-  useEffect(() => {
-    fetch('http://localhost:9292/merdles/random')
-      .then((r) => r.json())
-      .then((data) => setMemes(data))
-  }, [])
+  // useEffect(() => {
+  //   fetch('http://localhost:9292/merdles/random')
+  //     .then((r) => r.json())
+  //     .then((data) => setMemes(data))
+  // }, [])
 
   function showAll() {
     setRevealed(true)
   }
 
-  function getMeme() {
-    setIsClicked(true)
+  useEffect(() => getMeme, [])
 
+  function getMeme() {
+    fetch('http://localhost:9292/merdles/random')
+      .then((r) => r.json())
+      .then((data) => setMemes(data))
     setMemeDisplay(memes.image_url)
-    setAnswer(memes.name)
+    setCorrectAnswer(memes.name)
+    // setIsClicked(true)
+    console.log(correctAnswer)
   }
 
   function handleAnswer(e) {
@@ -33,7 +40,17 @@ function GridBoard() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    console.log(answer)
+    console.log(correctGuess)
+    console.log(correctAnswer)
+    console.log(userInput)
+    if (
+      correctAnswer.toLowerCase().includes(userInput.toLowerCase()) &&
+      userInput !== ''
+    ) {
+      return setCorrectGuess(true)
+    } else {
+      return setCorrectGuess(false)
+    }
   }
 
   const rows = []
@@ -55,7 +72,7 @@ function GridBoard() {
           id="board-pos"
           className="container justify-content-center align-items-center"
           style={{
-            backgroundImage: isClicked ? `url(${memeDisplay})` : '',
+            backgroundImage: `url(${memeDisplay})`,
             backgroundSize: 'cover',
             backgroundPosition: 'top',
             backgroundClip: 'content-box',
@@ -76,6 +93,20 @@ function GridBoard() {
           New Meme
         </div>
       </div>
+      {correctGuess ? (
+        <Button variant="success" disabled>
+          <Spinner
+            as="span"
+            animation="grow"
+            size="sm"
+            role="status"
+            aria-hidden="true"
+          />
+          YOU WIN
+        </Button>
+      ) : (
+        ''
+      )}
 
       <form onSubmit={handleSubmit} className="answer-box">
         <input type="text" onChange={handleAnswer} value={userInput} />
@@ -89,17 +120,4 @@ function GridBoard() {
 
 export default GridBoard
 
-// {isClicked ? }
-
-// `url${memeDisplay}`
-
-// {isClicked ? <img src={memeDisplay} alt="ERROR" /> : ''}
-
-// style={{ backgroundImage: isClicked ? memeDisplay : '' }}
-
-// style={{
-//   backgroundImage: `url${oneMeme}`,
-//   backgroundSize: 'cover',
-//   backgroundPosition: 'top',
-//   backgroundClip: 'content-box',
-// }}
+// backgroundImage: isClicked ? `url(${memeDisplay})` : '',
