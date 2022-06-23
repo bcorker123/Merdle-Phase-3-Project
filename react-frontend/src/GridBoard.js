@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Card } from "react-bootstrap";
+import Spinner from 'react-bootstrap/Spinner'
 import GridSquare from "./GridSquare";
 
 function GridBoard({ currentUser }) {
@@ -8,6 +9,7 @@ function GridBoard({ currentUser }) {
   const [userInput, setUserInput] = useState("");
   const [points, setPoints] = useState(1600);
   const [scoresList, setScoresList] = useState([]);
+  const [correctGuess, setCorrectGuess] = useState(false)
 
   useEffect(() => {
     fetch("http://localhost:9292/merdles/random")
@@ -18,9 +20,6 @@ function GridBoard({ currentUser }) {
         setScoresList(data.scores);
       });
   }, []);
-
-  console.log("scores: ", memes.scores);
-  console.log("meme id: ", memes.id);
 
   function showAll() {
     setRevealed(true);
@@ -44,8 +43,18 @@ function GridBoard({ currentUser }) {
   }
 
   function handleSubmit(e) {
-    e.preventDefault();
-    console.log();
+    e.preventDefault()
+    console.log(correctGuess)
+    console.log(memes.name)
+    console.log(userInput)
+    if (
+      memes.name.toLowerCase().includes(userInput.toLowerCase()) &&
+      userInput !== ''
+    ) {
+      return setCorrectGuess(true)
+    } else {
+      return setCorrectGuess(false)
+    }
   }
 
   function minusPoints() {
@@ -127,6 +136,20 @@ function GridBoard({ currentUser }) {
           New Meme
         </div>
       </div>
+      {correctGuess ? (
+        <Button variant="success" disabled>
+          <Spinner
+            as="span"
+            animation="grow"
+            size="sm"
+            role="status"
+            aria-hidden="true"
+          />
+          YOU WIN
+        </Button>
+      ) : (
+        ''
+      )}
 
       <form onSubmit={handleSubmit} className="answer-box">
         <input type="text" onChange={handleAnswer} value={userInput} />
@@ -141,17 +164,4 @@ function GridBoard({ currentUser }) {
 
 export default GridBoard;
 
-// {isClicked ? }
-
-// `url${memeDisplay}`
-
-// {isClicked ? <img src={memeDisplay} alt="ERROR" /> : ''}
-
-// style={{ backgroundImage: isClicked ? memeDisplay : '' }}
-
-// style={{
-//   backgroundImage: `url${oneMeme}`,
-//   backgroundSize: 'cover',
-//   backgroundPosition: 'top',
-//   backgroundClip: 'content-box',
-// }}
+// backgroundImage: isClicked ? `url(${memeDisplay})` : '',
