@@ -49,9 +49,16 @@ class ApplicationController < Sinatra::Base
     user_hash.to_json
   end
 
+  # get '/scores' do
+  #   Score.all.to_json
+  # end
+
   get '/scores' do
-    Score.all.to_json
+    Score.scores_user_points.to_json
   end
+   
+  
+
 
   get '/scores/:id' do
     id = params[:id].to_i - 1

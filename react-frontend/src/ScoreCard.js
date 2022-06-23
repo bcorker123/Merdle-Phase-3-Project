@@ -3,18 +3,36 @@ import Table from 'react-bootstrap/Table'
 
 function ScoreCard() {
   const [users, setUsers] = useState([])
+  const [userInfo, setUserInfo] = useState([])
+  const [totalRankings, setTotalRankings] = useState([])
 
-  useEffect(() => {
-    fetch('http://localhost:9292/users')
-      .then((r) => r.json())
-      .then((data) => setUsers(data))
-  }, [])
+  useEffect(() => getUsers(), [])
 
   function getUsers() {
-    let userNames = users.map((user) => user.name)
-    console.log(userNames)
+    fetch('http://localhost:9292/users')
+      .then((r) => r.json())
+      .then((data) => {
+        const userObj = { id: 'id', name: 'name' }
+        setUsers(data)
+        let userArr = users.map((user) => ({
+          [userObj.id]: user.id,
+          [userObj.name]: user.name,
+        }))
+
+        setUserInfo(userArr)
+      })
+
+    fetch('http://localhost:9292/scores')
+      .then((r) => r.json())
+      .then((data) => setTotalRankings(data))
   }
-  getUsers()
+
+  // function handleScores() {
+  // fetch('http://localhost:9292/scores')
+  //   .then((r) => r.json())
+  //   .then((data) => console.log(data))
+  // }
+  // handleScores()
 
   return (
     <div
@@ -24,27 +42,21 @@ function ScoreCard() {
       <Table striped bordered hover className="table">
         <thead>
           <tr>
-            <th>#</th>
+            <th>Player#</th>
             <th>Username</th>
             <th>Score</th>
+            <th>Game ID</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Mark</td>
-            <td>100</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Jacob</td>
-            <td>400</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Larry the Bird</td>
-            <td>5</td>
-          </tr>
+          {totalRankings.map((user) => (
+            <tr>
+              <td>{user.id}</td>
+              <td>{user.name}</td>
+              <td>{user.points}</td>
+              <td>{user.merdle_id}</td>
+            </tr>
+          ))}
         </tbody>
       </Table>
     </div>
