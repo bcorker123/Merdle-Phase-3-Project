@@ -21,11 +21,11 @@ function App() {
           path="/"
           element={<Home handleSelectUser={handleSelectUser} />}
         />
-        <Route path="/play" element={<GridBoard />} />
+        <Route path="/play" element={<GridBoard currentUser={currentUser} />} />
         <Route path="/scores" element={<ScoreCard />} />
       </Routes>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
