@@ -42,6 +42,24 @@ function Home({ handleSelectUser }) {
       });
   }
 
+  function handleDeleteUser(user) {
+    fetch(`http://localhost:9292/users/${user.id}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((r) => r.json())
+      .then((deletedUser) => {
+        const newUsersArray = users.filter((user) => {
+          if (deletedUser.id !== user.id) {
+            return user;
+          } else {
+            return null;
+          }
+        });
+        setUsers(newUsersArray);
+      });
+  }
+
   return (
     <div id="home-div" className="font">
       <h1 id="home-header">
@@ -72,6 +90,7 @@ function Home({ handleSelectUser }) {
         </Badge>
       </h2>
       <UserList
+        handleDeleteUser={handleDeleteUser}
         handleAddUser={handleAddUser}
         handleEditUser={handleEditUser}
         users={users}

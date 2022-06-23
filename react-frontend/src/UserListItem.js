@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import EditUserForm from "./EditUserForm";
 
-function UserListItem({ user, handleSelectUser, handleEditUser }) {
+function UserListItem({
+  user,
+  handleSelectUser,
+  handleEditUser,
+  handleDeleteUser,
+}) {
   const [toggleEdit, setToggleEdit] = useState(true);
 
   function submitToggle() {
@@ -27,6 +32,13 @@ function UserListItem({ user, handleSelectUser, handleEditUser }) {
           submitToggle={submitToggle}
         />
       )}
+      <Button
+        variant="outline-danger"
+        size="sm"
+        onClick={() => handleDeleteUser(user)}
+      >
+        x
+      </Button>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-    has_many :scores
+    has_many :scores, dependent: :destroy
     has_many :merdles, through: :scores
 
     def scores_with_merdle_names

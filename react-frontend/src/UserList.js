@@ -3,7 +3,13 @@ import CreateUserForm from "./CreateUserForm";
 import { Spinner } from "react-bootstrap";
 import UserListItem from "./UserListItem";
 
-function UserList({ users, handleSelectUser, handleAddUser, handleEditUser }) {
+function UserList({
+  users,
+  handleSelectUser,
+  handleAddUser,
+  handleEditUser,
+  handleDeleteUser,
+}) {
   if (!users) {
     return (
       <>
@@ -25,6 +31,7 @@ function UserList({ users, handleSelectUser, handleAddUser, handleEditUser }) {
           handleEditUser={handleEditUser}
           handleSelectUser={handleSelectUser}
           user={user}
+          handleDeleteUser={handleDeleteUser}
         />
       );
     } else {
