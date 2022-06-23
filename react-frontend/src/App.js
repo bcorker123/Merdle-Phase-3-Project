@@ -8,7 +8,7 @@ import GridBoard from "./GridBoard";
 import ScoreCard from "./ScoreCard";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState({ id: 1, name: "anon" });
 
   function handleSelectUser(username) {
     setCurrentUser(username);

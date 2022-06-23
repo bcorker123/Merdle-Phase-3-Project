@@ -16,14 +16,20 @@ function UserList({ users, handleSelectUser, handleAddUser, handleEditUser }) {
     );
   }
 
+  console.log(users);
+
   const usersList = users.map((user) => {
-    return (
-      <UserListItem
-        handleEditUser={handleEditUser}
-        handleSelectUser={handleSelectUser}
-        user={user}
-      />
-    );
+    if (user.name !== "anon") {
+      return (
+        <UserListItem
+          handleEditUser={handleEditUser}
+          handleSelectUser={handleSelectUser}
+          user={user}
+        />
+      );
+    } else {
+      return null;
+    }
   });
 
   return (
