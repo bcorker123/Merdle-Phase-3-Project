@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import { Badge, Accordion, Container } from 'react-bootstrap'
-import UserList from './UserList'
+import React, { useState, useEffect } from "react";
+import { Badge, Accordion, Container, Card } from "react-bootstrap";
+import UserList from "./UserList";
 
 function Home({ handleSelectUser }) {
   const [users, setUsers] = useState(null)
@@ -62,11 +62,25 @@ function Home({ handleSelectUser }) {
 
   return (
     <div id="home-div" className="font">
-      <h1 id="home-header">
+      <h1>
         <Badge pill bg="primary">
-          Welcome to <em>MERDLE!</em>
+          Welcome to <em>Merdle!</em>
         </Badge>
       </h1>
+      <Card className="meme-card">
+        <Card.Img
+          className="meme-img"
+          src="https://i.imgflip.com/28j0te.jpg"
+          alt="meme with Welcome to Merdle overlay"
+        />
+        <Card.ImgOverlay>
+          <Card.Title>
+            <Badge bg="secondary">
+              <em>merdle users</em>
+            </Badge>
+          </Card.Title>
+        </Card.ImgOverlay>
+      </Card>
       <Container>
         <Accordion>
           <Accordion.Item eventKey="0">

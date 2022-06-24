@@ -31,6 +31,16 @@ code {
   margin:auto;
 }
 
+.meme-card{
+  margin:auto;
+  width:500px;
+  height:250px;
+}
+
+.meme-img{
+  height:250px;
+  object-fit: cover;
+}
 
 #home-accordion{
   width:300px;
@@ -60,6 +70,19 @@ code {
 
 #covered{
   background-color: black;
+}
+
+#gridboard-tries{
+  margin:auto;
+  width:200px;
+  background-color:#7E8D85;
+  color:white;
+}
+
+.gridboard-scores{
+  background-color: lightgreen;
+  margin:auto;
+  width:400px;
 }
 
 :root {

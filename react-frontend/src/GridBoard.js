@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import { Button, Card, ListGroup } from 'react-bootstrap'
-import Spinner from 'react-bootstrap/Spinner'
-import GridSquare from './GridSquare'
+import React, { useState, useEffect } from "react";
+import { Button, Card, ListGroup, Badge } from "react-bootstrap";
+import Spinner from "react-bootstrap/Spinner";
+import GridSquare from "./GridSquare";
 
 function GridBoard({ currentUser }) {
   const [memes, setMemes] = useState([])
@@ -110,8 +110,9 @@ function GridBoard({ currentUser }) {
 
   const displayScores = scoresList.map((score) => {
     return (
-      <div style={{ backgroundColor: 'lightgreen' }}>
-        {score.name} got {score.points} on this Merdle!
+      <div className="gridboard-scores font">
+        <em>{score.name}</em> got <strong>{score.points}</strong> on this
+        Merdle!
       </div>
     )
   })
@@ -181,8 +182,15 @@ function GridBoard({ currentUser }) {
         <Button className="button2" type="submit">
           Answer
         </Button>
-        <Card body>Tries: x{answerTries}</Card>
+        <Card body id="gridboard-tries" className="font">
+          Tries: x{answerTries}
+        </Card>
       </form>
+      <h2>
+        <Badge pill bg="info">
+          Scores List:
+        </Badge>
+      </h2>
       {displayScores}
     </>
   )

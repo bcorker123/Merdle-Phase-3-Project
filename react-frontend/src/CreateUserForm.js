@@ -17,7 +17,7 @@ function CreateUserForm({ handleAddUser }) {
       }}
     >
       <Form.Group>
-        <Form.Label>Username</Form.Label>
+        <Form.Label>Create New User:</Form.Label>
         <Form.Control
           type="text"
           placeholder="enter username"
