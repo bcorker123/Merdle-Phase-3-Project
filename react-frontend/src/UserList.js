@@ -1,7 +1,7 @@
-import React from 'react'
-import CreateUserForm from './CreateUserForm'
-import { Spinner } from 'react-bootstrap'
-import UserListItem from './UserListItem'
+import React from "react";
+import CreateUserForm from "./CreateUserForm";
+import { Spinner } from "react-bootstrap";
+import UserListItem from "./UserListItem";
 
 function UserList({
   users,
@@ -19,13 +19,13 @@ function UserList({
         <br />
         <Spinner animation="grow" role="status" variant="info"></Spinner>
       </>
-    )
+    );
   }
 
-  // console.log(users);
+  console.log(users);
 
   const usersList = users.map((user) => {
-    if (user.name !== 'anon') {
+    if (user.name !== "anon") {
       return (
         <UserListItem
           handleEditUser={handleEditUser}
@@ -33,18 +33,18 @@ function UserList({
           user={user}
           handleDeleteUser={handleDeleteUser}
         />
-      )
+      );
     } else {
-      return null
+      return null;
     }
-  })
+  });
 
   return (
-    <div id="users-div" style={{ width: '200px', margin: 'auto' }}>
+    <div id="users-div" style={{ width: "200px", margin: "auto" }}>
       {usersList}
       <CreateUserForm handleAddUser={handleAddUser} />
     </div>
-  )
+  );
 }
 
-export default UserList
+export default UserList;
