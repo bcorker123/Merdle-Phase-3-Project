@@ -14,7 +14,7 @@ function ScoreCard() {
 
   return (
     <>
-      <Card className="meme-card">
+      {/* <Card className="meme-card">
         <Card.Img
           className="meme-img"
           src="https://i.imgflip.com/wxica.jpg"
@@ -29,7 +29,7 @@ function ScoreCard() {
             </Badge>
           </Card.Title>
         </Card.ImgOverlay>
-      </Card>
+      </Card> */}
       <div
         id="scores-container"
         className="container square-box d-flex justify-content-center align-items-center"
