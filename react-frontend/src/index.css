@@ -31,6 +31,16 @@ code {
   margin:auto;
 }
 
+#home-meme-card{
+  margin:auto;
+  width:500px;
+  height:250px;
+}
+
+#home-meme-img{
+  height:250px;
+  object-fit: cover;
+}
 
 #home-accordion{
   width:300px;
