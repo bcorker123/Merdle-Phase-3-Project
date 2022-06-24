@@ -70,6 +70,11 @@ class ApplicationController < Sinatra::Base
     user.to_json
   end
 
+  post '/scores' do
+    score = Score.create(points:params[:points], user_id:params[:user_id], merdle_id:params[:merdle_id] )
+    score.to_json
+  end
+
   patch '/users/:id' do
     user = User.find(params[:id])
     user.update(name:params[:name])
