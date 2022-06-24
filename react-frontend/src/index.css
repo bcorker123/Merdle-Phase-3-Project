@@ -31,13 +31,13 @@ code {
   margin:auto;
 }
 
-#home-meme-card{
+.meme-card{
   margin:auto;
   width:500px;
   height:250px;
 }
 
-#home-meme-img{
+.meme-img{
   height:250px;
   object-fit: cover;
 }

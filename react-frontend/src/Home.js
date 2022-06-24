@@ -67,9 +67,9 @@ function Home({ handleSelectUser }) {
           Welcome to <em>Merdle!</em>
         </Badge>
       </h1>
-      <Card id="home-meme-card">
+      <Card className="meme-card">
         <Card.Img
-          id="home-meme-img"
+          className="meme-img"
           src="https://i.imgflip.com/28j0te.jpg"
           alt="meme with Welcome to Merdle overlay"
         />
