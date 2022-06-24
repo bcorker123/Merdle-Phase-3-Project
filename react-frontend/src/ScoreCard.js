@@ -2,37 +2,15 @@ import React, { useState, useEffect } from "react";
 import { Card, Badge, Table } from "react-bootstrap";
 
 function ScoreCard() {
-  const [users, setUsers] = useState([]);
-  const [userInfo, setUserInfo] = useState([]);
-  const [totalRankings, setTotalRankings] = useState([]);
+  const [totalRankings, setTotalRankings] = useState([])
 
   useEffect(() => getUsers(), []);
 
   function getUsers() {
-    fetch("http://localhost:9292/users")
-      .then((r) => r.json())
-      .then((data) => {
-        const userObj = { id: "id", name: "name" };
-        setUsers(data);
-        let userArr = users.map((user) => ({
-          [userObj.id]: user.id,
-          [userObj.name]: user.name,
-        }));
-
-        setUserInfo(userArr);
-      });
-
-    fetch("http://localhost:9292/scores")
+    fetch('http://localhost:9292/scores')
       .then((r) => r.json())
       .then((data) => setTotalRankings(data));
   }
-
-  // function handleScores() {
-  // fetch('http://localhost:9292/scores')
-  //   .then((r) => r.json())
-  //   .then((data) => console.log(data))
-  // }
-  // handleScores()
 
   return (
     <>
@@ -81,7 +59,3 @@ function ScoreCard() {
   );
 }
 export default ScoreCard;
-
-{
-  /* <td colSpan={2}>Larry the Bird</td> */
-}

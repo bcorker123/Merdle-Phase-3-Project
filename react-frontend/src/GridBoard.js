@@ -4,89 +4,96 @@ import Spinner from "react-bootstrap/Spinner";
 import GridSquare from "./GridSquare";
 
 function GridBoard({ currentUser }) {
-  const [memes, setMemes] = useState([]);
-  const [revealed, setRevealed] = useState(false);
-  const [userInput, setUserInput] = useState("");
-  const [points, setPoints] = useState(1600);
-  const [scoresList, setScoresList] = useState([]);
-  const [correctGuess, setCorrectGuess] = useState(false);
-  const [answerTries, setAnswerTries] = useState(0);
+  const [memes, setMemes] = useState([])
+  const [revealed, setRevealed] = useState(false)
+  const [userInput, setUserInput] = useState('')
+  const [points, setPoints] = useState(1600)
+  const [scoresList, setScoresList] = useState([])
+  const [correctGuess, setCorrectGuess] = useState(false)
+  const [answerTries, setAnswerTries] = useState(0)
 
   useEffect(() => {
-    fetch("http://localhost:9292/merdles/random")
+    fetch('http://localhost:9292/merdles/random')
       .then((r) => r.json())
       .then((data) => {
-        setMemes(data);
-        setPoints(1600);
-        setScoresList(data.scores);
-      });
-  }, []);
+        setMemes(data)
+        setPoints(1600)
+        setScoresList(data.scores)
+      })
+  }, [])
 
   function showAll() {
-    setRevealed(true);
+    setRevealed(true)
   }
 
   function getMeme() {
-    fetch("http://localhost:9292/merdles/random")
+    fetch('http://localhost:9292/merdles/random')
       .then((r) => r.json())
       .then((data) => {
-        setMemes(data);
-        setScoresList(data.scores);
-      });
-    setPoints(1600);
-    pointsBG = "info";
-    setRevealed(false);
-    setCorrectGuess(false);
-    setAnswerTries(0);
+        setMemes(data)
+        setScoresList(data.scores)
+      })
+    setPoints(1600)
+    pointsBG = 'info'
+    setRevealed(false)
+    setCorrectGuess(false)
+    setAnswerTries(0)
   }
+  console.log(memes.name)
 
   function handleAnswer(e) {
-    setUserInput(e.target.value);
-    console.log(memes.name);
+    setUserInput(e.target.value)
   }
 
   function handleSubmit(e) {
-    e.preventDefault();
-    const newAnswerTries = answerTries + 1;
-    setAnswerTries(newAnswerTries);
-    // console.log(correctGuess);
-    // console.log(memes.name);
-    // console.log(userInput);
+    e.preventDefault()
+    const newAnswerTries = answerTries + 1
+    setAnswerTries(newAnswerTries)
+
     if (
       memes.name.toLowerCase().includes(userInput.toLowerCase()) &&
-      userInput !== ""
+      userInput !== ''
     ) {
       const newScore = {
         points: points,
         user_id: currentUser.id,
         merdle_id: memes.id,
-      };
-      console.log("new score object:", newScore);
-      // post request for new score
-      return setCorrectGuess(true);
+      }
+      console.log('new score object:', newScore)
+
+      fetch('http://localhost:9292/scores', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newScore),
+      })
+        .then((r) => r.json())
+        .then((data) => setScoresList(data))
+      return setCorrectGuess(true)
     } else {
-      return setCorrectGuess(false);
+      return setCorrectGuess(false)
     }
   }
 
   function minusPoints() {
-    setPoints(points - 100);
+    setPoints(points - 100)
   }
 
-  let pointsBG = "info";
+  let pointsBG = 'info'
 
   function loseGame() {
-    pointsBG = "danger";
+    pointsBG = 'danger'
   }
 
   if (points === 0) {
-    loseGame();
+    loseGame()
   }
 
-  const rows = [];
+  const rows = []
 
   for (let row = 0; row < 4; row++) {
-    const columns = [];
+    const columns = []
 
     for (let col = 0; col < 4; col++) {
       columns.push(
@@ -95,10 +102,10 @@ function GridBoard({ currentUser }) {
           revealed={revealed}
           minusPoints={minusPoints}
         />
-      );
+      )
     }
 
-    rows.push(columns);
+    rows.push(columns)
   }
 
   const displayScores = scoresList.map((score) => {
@@ -107,8 +114,8 @@ function GridBoard({ currentUser }) {
         <em>{score.name}</em> got <strong>{score.points}</strong> on this
         Merdle!
       </div>
-    );
-  });
+    )
+  })
 
   return (
     <>
@@ -118,9 +125,9 @@ function GridBoard({ currentUser }) {
           className="container justify-content-center align-items-center"
           style={{
             backgroundImage: `url(${memes.image_url})`,
-            backgroundSize: "cover",
-            backgroundPosition: "top",
-            backgroundClip: "content-box",
+            backgroundSize: 'cover',
+            backgroundPosition: 'top',
+            backgroundClip: 'content-box',
           }}
         >
           <div className="grid-board">
@@ -167,7 +174,7 @@ function GridBoard({ currentUser }) {
           YOU WIN
         </Button>
       ) : (
-        ""
+        ''
       )}
 
       <form onSubmit={handleSubmit} className="answer-box">
@@ -186,9 +193,9 @@ function GridBoard({ currentUser }) {
       </h2>
       {displayScores}
     </>
-  );
+  )
 }
 
-export default GridBoard;
+export default GridBoard
 
 // backgroundImage: isClicked ? `url(${memeDisplay})` : '',
