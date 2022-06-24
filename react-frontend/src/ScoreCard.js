@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Card, Badge, Table } from "react-bootstrap";
 
 function ScoreCard() {
-  const [totalRankings, setTotalRankings] = useState([])
+  const [totalRankings, setTotalRankings] = useState([]);
 
   useEffect(() => getUsers(), []);
 
   function getUsers() {
-    fetch('http://localhost:9292/scores')
+    fetch("http://localhost:9292/scores")
       .then((r) => r.json())
       .then((data) => setTotalRankings(data));
   }
@@ -31,6 +31,7 @@ function ScoreCard() {
         </Card.ImgOverlay>
       </Card>
       <div
+        id="scores-container"
         className="container square-box d-flex justify-content-center align-items-center"
         style={{ top: "125px", width: "600px", height: "500px" }}
       >

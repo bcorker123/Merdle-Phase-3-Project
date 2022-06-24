@@ -37,6 +37,10 @@ code {
   height:250px;
 }
 
+#scores-container{
+  padding-top:150px;
+}
+
 .meme-img{
   height:250px;
   object-fit: cover;
