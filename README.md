@@ -1,5 +1,7 @@
 # Merdle-Phase-3-Project
 
+# Video demo: https://youtu.be/ECQaB4FZVM8
+
 Requirements:
 
 1. Use Active Record to interact with a database. ✅
